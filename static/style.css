@@ -1,0 +1,282 @@
+/* 기본 스타일 */
+body {
+    font-family: Arial, sans-serif;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    padding-bottom: 30px;
+}
+
+h1,
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 0px;
+    font-size: 48px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0;
+    margin-bottom: 20px;
+    table-layout: fixed;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.h1_title {
+    text-decoration: none;
+    color: #333;
+    cursor: pointer;
+}
+
+.gall_tit a {
+    text-decoration: none !important;
+    color: #000;
+    text-align: left;
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.gall_tit a:hover {
+    text-decoration: underline !important;
+}
+
+input[type="text"],
+input[type="submit"],
+select[name="gallery_id"] {
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: auto;
+    box-sizing: border-box;
+    vertical-align: middle;
+    margin-bottom: 10px;
+    height: 40px;
+}
+
+input[type="text"] {
+    flex: 1;
+    max-width: 400px;
+}
+
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+.search-form select[name="gallery_id"] {
+    height: 40px;
+}
+
+.search-form input[type="text"] {
+    height: 40px;
+}
+
+.search-form input[type="submit"] {
+    height: 40px;
+}
+
+.search-results {
+    margin-top: 20px;
+    overflow-y: hidden;
+}
+
+.search-results table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.search-results th,
+.search-results td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.search-results th {
+    background-color: #f2f2f2;
+}
+
+.search-results .gall_tit a {
+    text-decoration: none !important;
+    color: #000;
+    text-align: left;
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.search-results .gall_tit a:hover {
+    text-decoration: underline !important;
+}
+
+.search-results .gall_recommend,
+.search-results .gall_comments {
+    max-width: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pagination {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.pagination .page-link {
+    text-decoration: none;
+    color: #000;
+    padding: 6px 12px;
+    font-size: 14px;
+}
+
+/* 모바일에서의 스타일 조정 */
+@media only screen and (max-width: 600px) {
+    body {
+        padding: 0;
+        padding-bottom: 30px;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-left: 0;
+        margin-right: 0;
+        font-size: 12px;
+    }
+
+    th,
+    td {
+        border: 1px solid #ddd;
+        padding: 4px;
+        font-size: 14px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+    }
+
+    .gall_tit a {
+        text-decoration: none !important;
+        color: #000;
+        text-align: left;
+        display: block;
+        padding: 10px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .gall_tit a:hover {
+        text-decoration: underline !important;
+    }
+
+    .gall_writer {
+        text-align: left;
+    }
+
+    th:nth-child(4),
+    td:nth-child(4) {
+        display: none;
+    }
+
+    .pagination .page-link {
+        padding: 4px 8px;
+        font-size: 12px;
+    }
+}
+
+/* 선택 옵션 스타일 */
+select[name="gallery_id"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 150px;
+}
+
+select[name="gallery_id"] option {
+    padding: 8px 12px;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+.author-link {
+    text-align: right;
+    margin-bottom: 20px;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.author-link a {
+    text-decoration: none;
+    color: #333;
+    margin-right: 5px;
+    white-space: normal;
+}
+
+.author-link .icon {
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+}

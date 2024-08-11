@@ -1,0 +1,102 @@
+<!-- templates/index.html -->
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dcgle2.com</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='dcgle2.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='dcgle2.ico') }}" type="image/x-icon">
+</head>
+
+<body>
+    <h1><a href="/" class="h1_title">dcgle2.com</a></h1>
+
+    <p class="author-link">
+        Made by <a href="https://gallog.dcinside.com/dddkkkdddkkk" target="_blank">씨발
+
+            <img src="{{ url_for('static', filename='dcgle2.ico') }}" alt="dcgle2 icon" class="icon">
+        </a>
+    </p>
+
+    <div class="search-form">
+        <form action="/" method="post">
+            <select name="gallery_id">
+                <option value="all" {% if selected_gallery=='all' %}selected{% endif %}>All</option>
+
+                {% for gallery in galleries %}
+                <option value="{{ gallery.id }}" {% if gallery.id==selected_gallery %}selected{% endif %}>
+                    {{ gallery.name }}</option>
+                {% endfor %}
+            </select>
+            <input type="text" name="query" placeholder="제목, 닉네임, 아이디, IP" value="{{ query }}">
+            <input type="submit" value="Search">
+        </form>
+    </div>
+
+    {% if search_results.items %}
+    <div class="search-results">
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 20%;">갤러리</th>
+                    <th style="width: 40%;">제목</th>
+                    <th style="width: 20%;">작성자</th>
+                    <th style="width: 20%;">작성일</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for post in search_results.items %}
+                <tr class="ub-content us-post" data-no="{{ post.id }}" data-type="icon_txt">
+                    <td class="gall_subject">{{ post.gallery.name }}</td>
+                    <td class="gall_tit ub-word">
+                        <a href="https://gall.dcinside.com/{{ post.gallery.id }}/{{ post.id }}" class="ub-word"
+                            data-no="{{ post.id }}">{{ post.title }}</a>
+                    </td>
+                    <td class="gall_writer ub-writer" data-uid="{{ post.author }}">{{ post.author }}</td>
+                    <td class="gall_date">{{ post.created_at.strftime('%m.%d %H:%M') }}</td>
+                    <!-- MM.DD hh:mm 형식으로 변경 -->
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="pagination">
+            {% if search_results.has_prev %}
+            <a class="page-link"
+                href="?gallery_id={{ selected_gallery }}&page={{ search_results.prev_num }}&query={{ query }}">
+                &lt;&lt; Previous </a>
+            {% endif %}
+
+            {% for num in search_results.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+            {% if num %}
+            {% if search_results.page == num %}
+            <span class="page-link">{{ num }}</span>
+            {% else %}
+            <a class="page-link" href="?gallery_id={{ selected_gallery }}&page={{ num }}&query={{ query }}">{{ num
+                }}</a>
+            {% endif %}
+            {% else %}
+            <span class="page-link">...</span>
+            {% endif %}
+            {% endfor %}
+
+            {% if search_results.has_next %}
+            <a class="page-link"
+                href="?gallery_id={{ selected_gallery }}&page={{ search_results.next_num }}&query={{ query }}">
+                Next &gt;&gt; </a>
+            {% endif %}
+        </div>
+
+
+    </div>
+    {% else %}
+    <p>검색 결과가 없습니다.</p>
+    {% endif %}
+
+</body>
+
+</html>
